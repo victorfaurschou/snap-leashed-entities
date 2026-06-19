@@ -3,15 +3,16 @@
 	"id": "snap-leashed-entities",
 	"version": "${version}",
 	"name": "Snap Leashed Entities",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Snaps leashed entities back to you when they fall too far behind.",
 	"authors": [
-		"Me!"
+		"medicalwhiskey"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/snap-leashed-entities",
+		"sources": "https://github.com/victorfaurschou/snap-leashed-entities",
+		"issues": "https://github.com/victorfaurschou/snap-leashed-entities/issues"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/snap-leashed-entities/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -19,12 +20,9 @@
 			"com.victorfaurschou.snapleashedentities.SnapLeashedEntities"
 		]
 	},
-	"mixins": [
-		"snap-leashed-entities.mixins.json"
-	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
-		"minecraft": "~26.1.2",
+		"minecraft": "~26.1",
 		"java": ">=25",
 		"fabric-api": "*"
 	}
