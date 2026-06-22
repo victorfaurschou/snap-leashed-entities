@@ -25,5 +25,6 @@ jobs:
       modrinth_environment: server_only
       modrinth_dependencies: '[{"project_id":"P7dR8mSH","dependency_type":"required"}]'
       curseforge_loaders: fabric
+      curseforge_relations: '[{"slug":"fabric-api","type":"requiredDependency"}]'
       curseforge_java_versions: "25"
     secrets: inherit
