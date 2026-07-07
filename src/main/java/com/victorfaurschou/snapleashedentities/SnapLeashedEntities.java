@@ -12,20 +12,19 @@ import net.minecraft.world.phys.Vec3;
 
 public class SnapLeashedEntities implements ModInitializer {
 
+    private static final double SNAP_THRESHOLD = Leashable.LEASH_TOO_FAR_DIST - 2.0;
+
     @Override
     public void onInitialize() {
-        ServerTickEvents.START_LEVEL_TICK.register(this::onWorldTick);
+        ServerTickEvents.START_WORLD_TICK.register(this::onWorldTick);
     }
 
     private void onWorldTick(ServerLevel level) {
-        for (ServerPlayer player : level.players()) {
-            for (Leashable leashable : Leashable.leashableLeashedTo(player)) {
-                double snapThreshold = leashable.leashSnapDistance() - 2.0;
-                if (leashable.leashDistanceTo(player) > snapThreshold) {
-                    Entity entity = (Entity) leashable;
-                    Vec3 dest = findSafePos(level, entity, player.position());
-                    entity.teleportTo(dest.x, dest.y, dest.z);
-                }
+        for (Entity entity : level.getAllEntities()) {
+            if (entity instanceof Leashable leashable && leashable.getLeashHolder() instanceof ServerPlayer player
+                    && entity.distanceTo(player) > SNAP_THRESHOLD) {
+                Vec3 dest = findSafePos(level, entity, player.position());
+                entity.teleportTo(dest.x, dest.y, dest.z);
             }
         }
     }
